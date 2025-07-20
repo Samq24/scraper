@@ -39,7 +39,7 @@ This project is a **Python-based web scraper** built to automatically extract pr
 
 ---
 
-## 🪜 Steps Completed
+## Steps Completed
 
 1. Created a virtual environment with `virtualenv`
 2. Initialized Git repository and connected to GitHub
