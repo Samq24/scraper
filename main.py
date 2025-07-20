@@ -145,7 +145,7 @@ for prop in data:
         if cursor.rowcount > 0:
             inserted += 1
     except Exception as e:
-        print(f"❌ Error insertando propiedad {prop['Title']}: {e}")
+        print(f"Error insertando propiedad {prop['Title']}: {e}")
 
 conn.commit()
 conn.close()
