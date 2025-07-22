@@ -39,7 +39,7 @@ This project is a **Python-based web scraper** built to automatically extract pr
 
 ---
 
-## 🪜 Steps Completed
+## Steps Completed
 
 1. Created a virtual environment with `virtualenv`
 2. Initialized Git repository and connected to GitHub
@@ -58,18 +58,3 @@ This project is a **Python-based web scraper** built to automatically extract pr
 - [ ] **Develop a RESTful API using FastAPI** to expose the listings
 - [ ] Add basic testing (unit + scraping)
 - [ ] Write technical documentation for database structure and codebase
-
----
-
-## Project Structure
-
-real-estate-scraper/
-│
-├── output/
-│ ├── remax_properties.db # SQLite database
-│ ├── remax_export.xlsx # Latest Excel export
-│
-├── scraper.py # Main scraping script
-├── requirements.txt # Project dependencies
-├── README.md # This file
-└── .gitignore # Git ignore rules
