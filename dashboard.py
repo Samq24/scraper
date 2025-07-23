@@ -6,11 +6,10 @@ import plotly.express as px
 
 st.set_page_config(page_title="🏘️ RE/MAX Property Dashboard", layout="wide")
 
-# Tabs
-tab1, tab2 = st.tabs(["🏡 Property Listings", "📊 Price Summary by Zone"])
+tab1, tab2 = st.tabs(["Property Listings", "📊 Price Summary by Zone"])
 
 with tab1:
-    st.title("🏡 RE/MAX Properties in Costa Rica")
+    st.title("RE/MAX Properties in Costa Rica")
 
     @st.cache_data
     def load_data():
@@ -48,7 +47,6 @@ with tab1:
     max_price = int(df["price_num"].max()) if df["price_num"].notnull().any() else 1000000
     selected_price = st.sidebar.slider("Select price range", min_price, max_price, (min_price, max_price))
 
-    # Filtros principales
     filtered_df = df[
         (df["location"].isin(selected_locations)) &
         (df["property_type"].isin(selected_types)) &
@@ -57,7 +55,6 @@ with tab1:
         (df["price_num"] <= selected_price[1])
     ]
 
-    # Aplicar búsqueda si hay palabra clave
     if search_term.strip():
         keyword = search_term.lower()
         filtered_df = filtered_df[
@@ -80,7 +77,6 @@ with tab1:
                     st.markdown(f"🛏️ {prop['bedrooms']}   |   🛁 {prop['bathrooms']}   |   📐 {prop['area']}")
                     st.markdown(f"[🔗 View Property]({prop['url']})", unsafe_allow_html=True)
 
-    # Exportar a Excel (fuera del loop)
     def convert_df_to_excel(df):
         output = BytesIO()
         with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
@@ -102,27 +98,9 @@ with tab1:
     else:
         st.sidebar.write("No properties to export.")
 
-# ----------------------------- TAB 2 -----------------------------
-# with tab2:
-#     st.title("📊 Price Summary by Zone")
-
-#     if filtered_df.empty:
-#         st.warning("No properties match the selected filters.")
-#     else:
-#         zone_stats = filtered_df.groupby("location")["price_num"].agg(["min", "max", "mean"]).reset_index()
-#         zone_stats.columns = ["Location", "Min Price", "Max Price", "Average Price"]
-
-#         st.dataframe(zone_stats, use_container_width=True)
-
-#         st.markdown("### 💰 Price Comparison by Zone")
-
-#         melted = zone_stats.melt(id_vars="Location", var_name="Metric", value_name="Price")
-#         fig = px.bar(melted, x="Location", y="Price", color="Metric", barmode="group",
-#                      title="Min / Max / Average Price by Zone")
-#         st.plotly_chart(fig, use_container_width=True)
 
 with tab2:
-    st.title("📊 Market Insights")
+    st.title("Market Insights")
 
     if filtered_df.empty:
         st.warning("No properties match the selected filters.")
@@ -132,8 +110,7 @@ with tab2:
 
         st.dataframe(zone_stats, use_container_width=True)
 
-        # --- Comparación de precios por zona ---
-        st.subheader("💰 Price Comparison by Zone")
+        st.subheader("Price Comparison by Zone")
         zone_stats = filtered_df.groupby("location")["price_num"].agg(["min", "max", "mean"]).reset_index()
         zone_stats.columns = ["Location", "Min Price", "Max Price", "Average Price"]
 
@@ -142,14 +119,12 @@ with tab2:
                      title="Min / Max / Average Price by Zone")
         st.plotly_chart(fig, use_container_width=True)
 
-        # --- Distribución de precios (histograma) ---
-        st.subheader("🏷️ Price Distribution")
+        st.subheader("Price Distribution")
         hist_fig = px.histogram(filtered_df, x="price_num", nbins=30, title="Distribution of Property Prices")
         hist_fig.update_layout(xaxis_title="Price (USD)", yaxis_title="Number of Properties")
         st.plotly_chart(hist_fig, use_container_width=True)
 
-        # --- Cantidad por tipo de propiedad ---
-        st.subheader("🏠 Properties by Type")
+        st.subheader("Properties by Type")
         type_counts = filtered_df["property_type"].value_counts().reset_index()
         type_counts.columns = ["Property Type", "Count"]
         type_fig = px.bar(type_counts, x="Property Type", y="Count", title="Property Counts by Type")
