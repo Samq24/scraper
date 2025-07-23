@@ -14,7 +14,7 @@ headers = {
 
 data = []
 page = 1
-max_pages = 2
+max_pages = 10
 
 while True:
     if page == 1:
