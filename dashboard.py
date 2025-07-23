@@ -4,9 +4,9 @@ import sqlite3
 from io import BytesIO
 import plotly.express as px
 
-st.set_page_config(page_title="🏘️ RE/MAX Property Dashboard", layout="wide")
+st.set_page_config(page_title="RE/MAX Property Dashboard", layout="wide")
 
-tab1, tab2 = st.tabs(["Property Listings", "📊 Price Summary by Zone"])
+tab1, tab2 = st.tabs(["Property Listings", "Price Summary by Zone"])
 
 with tab1:
     st.title("RE/MAX Properties in Costa Rica")
@@ -28,7 +28,7 @@ with tab1:
 
     df["price_num"] = df["price"].apply(parse_price)
 
-    st.sidebar.header("🔍 Filter Listings")
+    st.sidebar.header("Filter Listings")
 
     st.sidebar.subheader("Keyword Search")
     search_term = st.sidebar.text_input("Search by title or location", "")
@@ -62,7 +62,7 @@ with tab1:
             filtered_df["location"].str.lower().str.contains(keyword, na=False)
         ]
 
-    st.markdown(f"### 🔎 Showing {len(filtered_df)} Properties")
+    st.markdown(f"### Showing {len(filtered_df)} Properties")
 
     for i in range(0, len(filtered_df), 3):
         cols = st.columns(3)
