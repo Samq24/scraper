@@ -7,7 +7,7 @@ cursor = conn.cursor()
 cursor.execute("SELECT COUNT(*) FROM properties")
 total = cursor.fetchone()[0]
 
-print(f"🔢 Total de propiedades en la base de datos: {total}")
+print(f"Total de propiedades en la base de datos: {total}")
 
 
 # cursor.execute("SELECT title, url, price, location FROM properties ORDER BY id DESC LIMIT 5")
@@ -25,6 +25,6 @@ df = pd.read_sql_query("SELECT * FROM properties", conn)
 conn.close()
 
 df.to_excel("output/remax_export.xlsx", index=False)
-print("📤 Exportado a Excel: remax_export.xlsx")
+print("Exportado a Excel: remax_export.xlsx")
 
 conn.close()
