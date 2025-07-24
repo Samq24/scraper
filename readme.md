@@ -1,47 +1,43 @@
-# Real Estate Web Scraper & Dashboard – REMAX Costa Rica
+# RE/MAX Costa Rica Property Scraper & Dashboard
 
-This project is a **Python-based web scraper and data visualization dashboard** built to extract and explore property listings from the official [REMAX Costa Rica](https://www.remax-costa-rica.com/) website.  
+This is an end-to-end real estate data project built with **Python**, focused on **web scraping, data analysis**, and **interactive dashboards**.
 
-The scraper gathers detailed real estate data, stores it in a local database, and exposes a user-friendly dashboard for interactive filtering and exporting. Built as part of a **professional portfolio** to showcase skills in scraping, automation, backend data structuring, and dashboard creation — especially in the real estate domain.
+It scrapes property listings from [remax-costa-rica.com](https://www.remax-costa-rica.com/), stores the data in a **SQLite database**, and visualizes it using **Streamlit**.
 
 ---
 
 ## Features
 
-### Scraping
-- Loops through all public property listing pages.
-- Extracts:
-  - Title
-  - Image
-  - Listing URL
-  - Date
-  - Price
-  - Property type
-  - Location
-  - Bedrooms, Bathrooms
-  - Construction size, Lot size
+### Web Scraping
+- Scrapes all pages of property listings (with pagination)
+- Extracts detailed info:
+  - Title, image, description
+  - Price, type, location
+  - Bedrooms, bathrooms, area, lot size
+- Handles missing data gracefully
+- Saves data to SQLite and Excel
 
-### Storage
-- Saves data to:
-  - `SQLite` database for querying and filtering
-  - `.xlsx` file for offline access or reporting
+### Data Dashboard
+Built with **Streamlit**:
+- Filter by location, property type, bedrooms, and price
+- Search by keyword in title or location
+- Download filtered results as Excel
+- Visualize:
+  - Price comparison by zone (min, max, average)
+  - Number of properties by zone
+  - Average price by property type
+- Summary indicators: total listings, zones, price ranges
 
-### Dashboard with Streamlit
-- Filters by:
-  - Location
-  - Property Type
-  - Bedrooms
-  - **Price Range**
-- Displays listings as visual cards (images, details, links)
-- Allows exporting filtered results to Excel with one click
 
 ---
 
-## Tech Stack
+## Technologies Used
 
-- `Python 3.11+`
-- `requests`, `BeautifulSoup4`, `pandas`
-- `sqlite3`, `xlsxwriter`
-- `Streamlit` (for interactive dashboard)
-- `Git + GitHub`
-- Virtual environment with `venv`
+- `Python 3.11`
+- `BeautifulSoup` for scraping
+- `requests` for HTTP
+- `pandas` for data manipulation
+- `SQLite3` for local database
+- `Streamlit` for dashboard
+- `Plotly` for data visualization
+- `xlsxwriter` for Excel export

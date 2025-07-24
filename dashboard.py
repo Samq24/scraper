@@ -6,7 +6,7 @@ import plotly.express as px
 
 st.set_page_config(page_title="RE/MAX Property Dashboard", layout="wide")
 
-tab1, tab2 = st.tabs(["Property Listings", "Price Summary by Zone"])
+tab1, tab2, tab3 = st.tabs(["Property Listings", "Price Summary by Zone", "Market Indicators"])
 
 with tab1:
     st.title("RE/MAX Properties in Costa Rica")
@@ -129,3 +129,20 @@ with tab2:
         type_counts.columns = ["Property Type", "Count"]
         type_fig = px.bar(type_counts, x="Property Type", y="Count", title="Property Counts by Type")
         st.plotly_chart(type_fig, use_container_width=True)
+
+with tab3:
+    st.title("Market Indicators")
+
+    if filtered_df.empty:
+        st.warning("No properties match the selected filters.")
+    else:
+        col1, col2, col3 = st.columns(3)
+        col1.metric("Total Listings", f"{len(filtered_df)}")
+        col2.metric("Average Price", f"${int(filtered_df['price_num'].mean()):,}")
+        col3.metric("Median Price", f"${int(filtered_df['price_num'].median()):,}")
+
+        col4, col5 = st.columns(2)
+        common_location = filtered_df["location"].mode().iloc[0] if not filtered_df["location"].mode().empty else "N/A"
+        common_type = filtered_df["property_type"].mode().iloc[0] if not filtered_df["property_type"].mode().empty else "N/A"
+        col4.metric("Top Location", common_location)
+        col5.metric("Top Property Type", common_type)
