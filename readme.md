@@ -1,43 +1,42 @@
-# RE/MAX Costa Rica Property Scraper & Dashboard
+# RE/MAX Real Estate Dashboard
 
-This is an end-to-end real estate data project built with **Python**, focused on **web scraping, data analysis**, and **interactive dashboards**.
+A complete real estate data project that scrapes property listings from [RE/MAX Costa Rica](https://www.remax-costa-rica.com), stores them in a local **SQLite** database, and displays the results in a responsive **Streamlit dashboard**.
 
-It scrapes property listings from [remax-costa-rica.com](https://www.remax-costa-rica.com/), stores the data in a **SQLite database**, and visualizes it using **Streamlit**.
+**Live App**: [scraper-rs.streamlit.app](https://scraper-rs.streamlit.app/)
 
 ---
 
 ## Features
 
-### Web Scraping
-- Scrapes all pages of property listings (with pagination)
-- Extracts detailed info:
-  - Title, image, description
-  - Price, type, location
-  - Bedrooms, bathrooms, area, lot size
-- Handles missing data gracefully
-- Saves data to SQLite and Excel
+- Automated web scraping using `requests` and `BeautifulSoup`  
+- Data storage in a structured SQLite database  
+- Interactive dashboard with filters by:
+  - Keyword (title or location)
+  - Location
+  - Property Type
+  - Bedrooms
+  - Price range
 
-### Data Dashboard
-Built with **Streamlit**:
-- Filter by location, property type, bedrooms, and price
-- Search by keyword in title or location
-- Download filtered results as Excel
-- Visualize:
-  - Price comparison by zone (min, max, average)
-  - Number of properties by zone
-  - Average price by property type
-- Summary indicators: total listings, zones, price ranges
+- Property cards showing:
+  - Title, location, price
+  - Bedrooms, bathrooms, size
+  - Image preview + direct listing URL
 
+- Export filtered results to Excel  
+- Dynamic price comparison chart (min, max, avg) by zone  
+- Extra charts:
+  - Properties by bedrooms
+  - Properties by type  
+- Summary tab with quick KPIs (count, average price)
 
 ---
 
-## Technologies Used
+## Tech Stack
 
-- `Python 3.11`
-- `BeautifulSoup` for scraping
-- `requests` for HTTP
-- `pandas` for data manipulation
-- `SQLite3` for local database
-- `Streamlit` for dashboard
-- `Plotly` for data visualization
-- `xlsxwriter` for Excel export
+- **Python 3.11+**
+- **Streamlit**
+- **SQLite**
+- **BeautifulSoup**
+- **Pandas**
+- **Plotly**
+- **XlsxWriter**
